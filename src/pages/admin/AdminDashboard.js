@@ -7,17 +7,25 @@ import Orders from "../../components/order/Orders";
 
 const AdminDashboard = () => {
   const [orders, setOrders] = useState([]);
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
+
+  let user
+  const getUser = () => {
+    user = JSON.parse(localStorage.getItem('user'))
+  }
+
+  getUser()
 
   useEffect(() => {
     loadOrders();
   }, []);
 
-  const loadOrders = () =>
+  const loadOrders = () => {
     getOrders(user.token).then((res) => {
       console.log(JSON.stringify(res.data, null, 4));
       setOrders(res.data);
     });
+  }
 
   const handleStatusChange = (orderId, orderStatus) => {
     changeStatus(orderId, orderStatus, user.token).then((res) => {

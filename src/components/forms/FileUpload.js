@@ -31,7 +31,7 @@ const FileUpload = ({ values, setValues, setLoading }) => {
                 { image: uri },
                 {
                   headers: {
-                    authtoken: user ? user.token : "",
+                    Authorization: `Bearer ${user.token}`,
                   },
                 }
               )

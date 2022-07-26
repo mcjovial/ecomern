@@ -20,7 +20,15 @@ const Header = () => {
   const [current, setCurrent] = useState("home");
 
   let dispatch = useDispatch();
-  let { user, cart } = useSelector((state) => ({ ...state }));
+  let { cart } = useSelector((state) => ({ ...state }));
+
+  let user
+  const getUser = () => {
+    user = JSON.parse(localStorage.getItem('user'))
+  }
+
+  getUser()
+
 
   let history = useHistory();
 

@@ -5,7 +5,14 @@ import LoadingToRedirect from "./LoadingToRedirect";
 import { currentAdmin } from "../../functions/auth";
 
 const AdminRoute = ({ children, ...rest }) => {
-  const { user } = useSelector((state) => ({ ...state }));
+  // const { user } = useSelector((state) => ({ ...state }));
+
+  let user
+  const getUser = () => {
+    user = JSON.parse(localStorage.getItem('user'))
+  }
+  getUser()
+
   const [ok, setOk] = useState(false);
 
   useEffect(() => {
